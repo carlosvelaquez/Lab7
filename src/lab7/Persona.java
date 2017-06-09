@@ -1,9 +1,11 @@
 package lab7;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public abstract class Persona {
+public abstract class Persona implements Serializable{
+    long SerialVersionUID = 777L;
 
     String nombre;
     int edad, id;
