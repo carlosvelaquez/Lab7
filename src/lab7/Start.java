@@ -6,6 +6,8 @@
 package lab7;
 
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import lab7.Persona.Doctor;
 import lab7.Persona.Paciente;
 
@@ -33,7 +35,7 @@ public class Start extends javax.swing.JFrame {
 
         jdSeleccionarDoctor = new javax.swing.JDialog();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmSelDoctor = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -59,7 +61,7 @@ public class Start extends javax.swing.JFrame {
                     .addComponent(jButton3)
                     .addGroup(jdSeleccionarDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(cmSelDoctor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jdSeleccionarDoctorLayout.setVerticalGroup(
@@ -68,7 +70,7 @@ public class Start extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmSelDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -121,9 +123,22 @@ public class Start extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jdSeleccionarDoctor.setModal(true);
-        jdSeleccionarDoctor.pack();
-        jdSeleccionarDoctor.setVisible(true);
+        if (doctores.size() > 0) {
+            DefaultComboBoxModel m = new DefaultComboBoxModel();
+        
+            for (Doctor d : doctores) {
+                m.addElement(d);
+            }
+
+            cmSelDoctor.setModel(m);
+
+            jdSeleccionarDoctor.setModal(true);
+            jdSeleccionarDoctor.pack();
+            jdSeleccionarDoctor.setLocationRelativeTo(null);
+            jdSeleccionarDoctor.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "No existen doctores en el registro");
+        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -133,6 +148,8 @@ public class Start extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        doctorActual = (Doctor) cmSelDoctor.getSelectedItem();
+        
         jdSeleccionarDoctor.dispose();
         this.dispose();
         DashDoctores.main(new String[1]);
@@ -176,10 +193,10 @@ public class Start extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cmSelDoctor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JDialog jdSeleccionarDoctor;

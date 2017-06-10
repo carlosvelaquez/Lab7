@@ -648,12 +648,12 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="cbnpAñadirOrgano" max="32767" attributes="0"/>
+                                  <Component id="cbnpAñadirOrgano" pref="131" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnpAñadirOrgano" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="cbnpRemoverOrgano" pref="119" max="32767" attributes="0"/>
+                                  <Component id="cbnpRemoverOrgano" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnpRemoverOrgano" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -686,7 +686,15 @@
                 <Component class="javax.swing.JComboBox" name="cbnpA&#xf1;adirOrgano">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="0"/>
+                      <StringArray count="7">
+                        <StringItem index="0" value="Estomago"/>
+                        <StringItem index="1" value="Higado"/>
+                        <StringItem index="2" value="Cerebro"/>
+                        <StringItem index="3" value="P&#xe1;ncreas"/>
+                        <StringItem index="4" value="Coraz&#xf3;n"/>
+                        <StringItem index="5" value="Pulm&#xf3;nes"/>
+                        <StringItem index="6" value="Ri&#xf1;ones"/>
+                      </StringArray>
                     </Property>
                   </Properties>
                   <AuxValues>

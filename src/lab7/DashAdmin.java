@@ -5,9 +5,11 @@
  */
 package lab7;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.logging.Level;
@@ -523,6 +525,8 @@ public class DashAdmin extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Organos a Evaluar"));
 
+        cbnpAñadirOrgano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estomago", "Higado", "Cerebro", "Páncreas", "Corazón", "Pulmónes", "Riñones" }));
+
         btnpAñadirOrgano.setText("Añadir");
 
         cbnpRemoverOrgano.addActionListener(new java.awt.event.ActionListener() {
@@ -544,11 +548,11 @@ public class DashAdmin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(cbnpAñadirOrgano, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbnpAñadirOrgano, 0, 131, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnpAñadirOrgano))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(cbnpRemoverOrgano, 0, 119, Short.MAX_VALUE)
+                        .addComponent(cbnpRemoverOrgano, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnpRemoverOrgano))
                     .addComponent(jScrollPane15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -1674,18 +1678,23 @@ public class DashAdmin extends javax.swing.JFrame {
             fos = new FileWriter(a);
             BufferedWriter oos = new BufferedWriter(fos);
             
+            oos.write("Doctores: \n\n");
+            
             for (Doctor d : Start.doctores) {
-                oos.writeObject(d);
+                oos.write(d.toString() + "\n");
             }
             oos.flush();
             
-            a = new File("./pacientes.sota");
+            a = new File("./pacientes.txt");
             
-            fos = new FileOutputStream(a);
-            oos = new ObjectOutputStream(fos);
+            fos = new FileWriter(a);
+            oos = new BufferedWriter(fos);
+            
+            oos.write("Pacientes: \n\n");
+            
             
             for (Paciente p : Start.pacientes) {
-                oos.writeObject(p);
+                oos.write(p.toString() + "\n");
             }
             oos.flush();
             
