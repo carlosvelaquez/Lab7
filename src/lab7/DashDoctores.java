@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -241,13 +242,17 @@ public class DashDoctores extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if (Start.pacientes.size() > 0) {
+            DefaultTableModel t = new DefaultTableModel();
             DefaultComboBoxModel m = new DefaultComboBoxModel();
         
             for (Persona.Paciente p : Start.pacientes) {
                 m.addElement(p);
+                t.addRow(new Object[]{p.getNombre(), p.getFechaIngreso(), p.getFechaAlta(), p.getEdad()});
             }
 
             jComboBox1.setModel(m);
+            jTable2.setModel(t);
+            
         }else{
             JOptionPane.showMessageDialog(this, "No existen pacientes en el registro");
         }
