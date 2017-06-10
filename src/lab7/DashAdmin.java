@@ -221,6 +221,8 @@ public class DashAdmin extends javax.swing.JFrame {
         btmdRemoverPaciente = new javax.swing.JButton();
         btmdModificar = new javax.swing.JButton();
         btmdLimpiar = new javax.swing.JButton();
+        jLabel42 = new javax.swing.JLabel();
+        cbmdDoctor = new javax.swing.JComboBox<>();
         btCerrarSesion = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
@@ -1168,6 +1170,11 @@ public class DashAdmin extends javax.swing.JFrame {
         );
 
         btmpModificar.setText("Modificar");
+        btmpModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btmpModificarActionPerformed(evt);
+            }
+        });
 
         btmpLimpiar.setText("Limpiar");
 
@@ -1428,8 +1435,15 @@ public class DashAdmin extends javax.swing.JFrame {
         );
 
         btmdModificar.setText("Modificar");
+        btmdModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btmdModificarActionPerformed(evt);
+            }
+        });
 
         btmdLimpiar.setText("Limpiar");
+
+        jLabel42.setText("Modificar");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1445,7 +1459,10 @@ public class DashAdmin extends javax.swing.JFrame {
                             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel42)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbmdDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btmdLimpiar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btmdModificar)))
@@ -1464,7 +1481,9 @@ public class DashAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btmdModificar)
-                    .addComponent(btmdLimpiar))
+                    .addComponent(btmdLimpiar)
+                    .addComponent(jLabel42)
+                    .addComponent(cbmdDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1621,7 +1640,7 @@ public class DashAdmin extends javax.swing.JFrame {
         
         char sexoChar;
         
-        if (rbnpFemenino.isSelected()) {
+        if (rbndFemenino.isSelected()) {
             sexoChar = 'F';
         }else{
             sexoChar = 'M';
@@ -1713,6 +1732,54 @@ public class DashAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void btmdModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmdModificarActionPerformed
+        Start.doctores.remove((Doctor) cbmdDoctor.getSelectedItem());
+        
+        char sexoChar;
+        
+        if (rbmpFemenino.isSelected()) {
+            sexoChar = 'F';
+        }else{
+            sexoChar = 'M';
+        }
+        
+        Doctor d = new Doctor((Integer) jSpinner10.getValue(), tfmdHorarioTrabajo.getText(), tamdDiasTrabajo.getText(),
+        tfmdNombre.getText(), (Integer) spmdEdad.getValue(), Integer.parseInt(tfmdID.getText()), (Integer) spmdAltura.getValue(), (Integer) spmdPeso.getValue(), sexoChar);
+        
+        Start.doctores.add(d);
+        JOptionPane.showMessageDialog(this, "Doctor modificado exitosamente");
+    }//GEN-LAST:event_btmdModificarActionPerformed
+
+    private void btmpModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmpModificarActionPerformed
+        Start.pacientes.remove((Paciente) cbmpPaciente.getSelectedItem());
+        
+        char sexoChar;
+        
+        if (rbmpFemenino.isSelected()) {
+            sexoChar = 'F';
+        }else{
+            sexoChar = 'M';
+        }
+        
+        Paciente p;
+        p = new Paciente(dtmpIngreso.getDate(), dtmpAlta.getDate(), tfmpTipoSangre.getText(),
+                tampCausaVisita.getText(), tfmpNombre.getText(), (Integer) spmpEdad.getValue(), Integer.parseInt(tfmpID.getText()), (Integer) spmpAltura.getValue(),
+                (Integer) spmpPeso.getValue(), sexoChar);
+        
+        DefaultListModel m = (DefaultListModel) listnpAlergias.getModel();
+        for (int i = 0; i < m.getSize(); i++) {
+            p.getAlergias().add((String) m.getElementAt(i));
+        }
+        
+        m = (DefaultListModel) listnpOrganos1.getModel();
+        for (int i = 0; i < m.getSize(); i++) {
+            p.getOrganos().add((Organo) m.getElementAt(i));
+        }
+        
+        Start.pacientes.add(p);
+        JOptionPane.showMessageDialog(this, "Paciente modificado exitosamente");
+    }//GEN-LAST:event_btmpModificarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1783,6 +1850,7 @@ public class DashAdmin extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbElimDoctores;
     private javax.swing.JComboBox<String> cbElimPacientes;
     private javax.swing.JComboBox<String> cbmdAñadirPaciente;
+    private javax.swing.JComboBox<String> cbmdDoctor;
     private javax.swing.JComboBox<String> cbmdRemoverEspecialidad;
     private javax.swing.JComboBox<String> cbmdRemoverPaciente;
     private javax.swing.JComboBox<String> cbmpAñadirOrgano;
@@ -1837,6 +1905,7 @@ public class DashAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1987,6 +2056,20 @@ public class DashAdmin extends javax.swing.JFrame {
         
         
         DefaultComboBoxModel mod = new DefaultComboBoxModel();
+        
+        for (Paciente p : Start.pacientes) {
+            mod.addElement(p);
+        }
+        
+        cbmpPaciente.setModel(mod);
+        
+        mod = new DefaultComboBoxModel();
+        
+        for (Doctor d : Start.doctores) {
+            mod.addElement(d);
+        }
+        
+        cbmdDoctor.setModel(mod);
         /*DefaultListModel m = (DefaultListModel) listnpOrganos1.getModel();
         
         for (int i = 0; i < m.getSize(); i++) {
