@@ -242,12 +242,16 @@ public class DashDoctores extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if (Start.pacientes.size() > 0) {
-            DefaultTableModel t = new DefaultTableModel();
+            DefaultTableModel t = (DefaultTableModel) jTable2.getModel();
+            
+            while (t.getRowCount() > 0){
+                t.removeRow(0);
+            }
             DefaultComboBoxModel m = new DefaultComboBoxModel();
         
             for (Persona.Paciente p : Start.pacientes) {
                 m.addElement(p);
-                t.addRow(new Object[]{p.getNombre(), p.getFechaIngreso(), p.getFechaAlta(), p.getEdad()});
+                t.addRow(new Object[]{p.getNombre(), p.getFechaIngreso().toString(), p.getFechaAlta().toString(), p.getEdad()});
             }
 
             jComboBox1.setModel(m);
